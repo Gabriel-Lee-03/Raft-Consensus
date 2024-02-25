@@ -4,7 +4,10 @@
 
 defmodule AppendEntries do
 
+def send_append_entries(server, followerP) do
+  server
+end
+
 # .. omitted
 
 end # AppendEntries
-

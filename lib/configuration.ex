@@ -49,9 +49,9 @@ def params :default do
     client_timelimit:        60_000,   # clients stops sending requests after this time(ms)
     max_client_requests:     5000,     # maximum no of requests each client will attempt
     client_request_interval: 1,        # interval(ms) between client requests
-    client_reply_timeout:    50,       # timeout(ms) for the reply to a client request
+    client_reply_timeout:    10000,       # timeout(ms) for the reply to a client request
 
-    election_timeout_range:  100..200, # timeout(ms) for election, set randomly in range
+    election_timeout_range:  1000..2000, # timeout(ms) for election, set randomly in range
     append_entries_timeout:  10,       # timeout(ms) for the reply to a append_entries request
 
     monitor_interval:        1000,     # interval(ms) between monitor summaries
@@ -70,7 +70,7 @@ end # params :default
 # add further params functions for your own tests and experiments
 
 # _________________________________________________________ params :testing_XX
-def params :testing_XX do             
+def params :testing_XX do
   Map.merge (params :default),
   %{
     # omitted

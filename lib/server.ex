@@ -16,6 +16,7 @@ def start(config, server_num) do
     config
     |> State.initialise(server_num, servers, databaseP)
     |> Timer.restart_election_timer()
+    # |> Debug.info("election done?")
     |> Server.next()
   end # receive
 end # start
@@ -31,15 +32,18 @@ def next(server) do
 
   # { :APPEND_ENTRIES_REPLY, ...
 
-  # { :APPEND_ENTRIES_TIMEOUT, ...
+  { :APPEND_ENTRIES_TIMEOUT, msg } -> server
 
-  # { :VOTE_REQUEST, ...
+  { :VOTE_REQUEST, msg } ->
+    server |> Vote.handle_vote_request(msg)
 
-  # { :VOTE_REPLY, ...
+  { :VOTE_REPLY, msg } ->
+    server |> Vote.handle_vote_reply(msg)
 
-  # { :ELECTION_TIMEOUT, ...
+  { :ELECTION_TIMEOUT, %{term: term, election: election} } ->
+    server |> Vote.hold_election(term)
 
-  # { :CLIENT_REQUEST, ...
+  { :CLIENT_REQUEST, msg } -> server
 
    unexpected ->
       Helper.node_halt("***** Server: unexpected message #{inspect unexpected}")
