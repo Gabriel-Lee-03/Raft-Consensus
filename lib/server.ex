@@ -28,11 +28,14 @@ def next(server) do
 
   server = receive do
 
-  # { :APPEND_ENTRIES_REQUEST, ...
+  { :APPEND_ENTRIES_REQUEST, msg} ->
+    server |> AppendEntries.handle_append_entries_request(msg)
 
-  # { :APPEND_ENTRIES_REPLY, ...
+  { :APPEND_ENTRIES_REPLY, msg} ->
+    server |> AppendEntries.handle_append_entries_reply(msg)
 
-  { :APPEND_ENTRIES_TIMEOUT, msg } -> server
+  { :APPEND_ENTRIES_TIMEOUT, msg } ->
+    server |> ServerLib.handle_RPC_timeout(msg)
 
   { :VOTE_REQUEST, msg } ->
     server |> Vote.handle_vote_request(msg)

@@ -5,49 +5,82 @@
 defmodule AppendEntries do
 
 def send_append_entries(server, followerP) do
-  server = server |> restart_append_entry_timer(followerP)
+  server = server |> Timer.restart_append_entries_timer(followerP)
   next_log_index = server.next_index.followerP
   last_log_index = next_log_index - 1
   last_term = Log.term_at(server, last_log_index)
-  entries = Log.get_entries_from(next_log_index)
-  send({ :APPEND_ENTRIES_REQUEST, %{term: server.curr_term, leader_id: server.selfP, last_log_index: last_log_index, last_term: last_term, entries: entries, leader_commit: server.commit_index} } )
+  entries = Log.get_entries_from(server, next_log_index)
+  send(followerP, { :APPEND_ENTRIES_REQUEST, %{term: server.curr_term, leader_id: server.selfP, last_log_index: last_log_index, last_term: last_term, entries: entries, leader_commit: server.commit_index} } )
   server
 
 end
 
 def handle_append_entries_request(server, %{term: term, leader_id: leader_id, last_log_index: last_log_index, last_term: last_term, entries: entries, leader_commit: leader_commit}) do
-  server =
-    if term > server.curr_term do
-      server |> Vote.stepdown(term)
-    else
-      server
-    end
+  server = server |> ServerLib.stepdown(term)
 
   if term < server.curr_term do
-    send({ :APPEND_ENTRIES_REPLY, %{from: server.selfP, term: server.curr_term, success: False} })
+    send(leader_id, { :APPEND_ENTRIES_REPLY, %{from: server.selfP, term: server.curr_term, success: false, index: nil} })
     server
   else
-    index = 0
+    server = server |> Timer.restart_election_timer()
     success = last_log_index == 0 or (last_log_index <= Log.last_index(server) and Log.term_at(server, last_log_index) == last_term)
 
-    if success do
-      server
-      |> Log.delete_from(last_log_index + 1)
-      |> Log.merge(entries)
-      |> AppendEntries.update_commit_index(leader_commit)
-    else
-      server
-    end
+    server =
+      if success do
+        server
+        |> Log.delete_entries_from(last_log_index + 1)
+        |> Log.merge_entries(entries)
+        |> AppendEntries.update_follower_commit_index(leader_commit)
+      else
+        server
+      end
+    reply_index = if success do Log.last_index(server) else nil end
+    send(leader_id, { :APPEND_ENTRIES_REPLY, %{from: server.selfP, term: server.curr_term, success: success, index: reply_index} })
+    server
   end
 end
 
-# .. omitted
+def handle_append_entries_reply(server, %{from: _, term: term, success: _, index: _}) when term > server.curr_term do
+  server |> ServerLib.stepdown(term)
+end
 
-def update_commit_index(server, leader_commit) do
+def handle_append_entries_reply(server, %{from: followerP, term: term, success: success, index: index}) when server.state == :LEADER and server.term == term do
+  server =
+    if success do
+      server
+      |> State.next_index(followerP, index + 1)
+      |> State.match_index(followerP, index)
+    else
+      server
+      |> State.next_index(followerP, server.next_index.followerP - 1)
+    end
+  server = server |> AppendEntries.update_leader_commit_index(server.commit_index + 1)
+  if server.next_index.followerP <= Log.last_index(server) do
+    server |> AppendEntries.send_append_entries(followerP)
+  else
+    server
+  end
+end
+
+def handle_append_entries_reply(server, %{from: _, term: _, success: _, index: _}) do server end
+
+def update_leader_commit_index(server, index) do
+  count = Enum.count(server.match_index, fn {_key, value} -> value >= index end)
+  if count >= server.majority do
+    server
+    |> State.commit_index(index)
+    |> AppendEntries.update_leader_commit_index(index + 1)
+  else
+    server
+  end
+end
+
+def update_follower_commit_index(server, leader_commit) do
   if leader_commit > server.commit_index do
     server |> State.commit_index(min(leader_commit, Log.last_index(server)))
   else
     server
   end
+end
 
 end # AppendEntries

@@ -25,89 +25,62 @@ def hold_election(server, term) do
 end
 
 def request_vote_all(server) do
-  updated = server
+  server = server
   |> Timer.cancel_all_append_entries_timers()
   |> Debug.info("#{server.server_num} in request_vote_all")
-  Enum.reduce(Enum.filter(updated.servers, fn voterP -> voterP != updated.selfP end), updated, fn voterP, acc -> acc |> Vote.request_vote(voterP) end)
+  Enum.reduce(Enum.filter(server.servers, fn voterP -> voterP != server.selfP end), server, fn voterP, acc -> acc |> Vote.request_vote(voterP) end)
 end
 
 def request_vote(server, voterP) do
   vote_req_msg = { :VOTE_REQUEST, %{from: server.selfP, term: server.curr_term} }
-  updated = server
+  server = server
   |> Timer.restart_append_entries_timer(voterP)
   |> Debug.info("#{server.server_num} request vote from voter")
   send(voterP, vote_req_msg)
-  updated
+  server
 end
 
 def handle_vote_request(server, %{from: req_id, term: req_term}) do
-  updated =
-    if req_term > server.curr_term do
-      server |> Vote.stepdown(req_term)
-    else
-      server
-    end
+  server = server |> ServerLib.stepdown(req_term)
 
-  updated =
-    if req_term == updated.curr_term and (updated.voted_for == req_id || updated.voted_for == nil) do
-      updated
+  server =
+    if req_term == server.curr_term and (server.voted_for == req_id || server.voted_for == nil) do
+      server
       |> State.voted_for(req_id)
       |> Timer.restart_election_timer()
       |> Debug.info("vote requested from #{server.server_num}")
     else
-      updated
-    end
-
-  send(req_id, { :VOTE_REPLY, %{from: updated.selfP, term: updated.curr_term, voted_for: updated.voted_for} })
-
-  updated
-end
-
-def handle_vote_reply(server, %{from: rep_from, term: rep_term, voted_for: rep_voted_for}) do
-  updated =
-    if rep_term > server.curr_term do
-      server |> Vote.stepdown(rep_term)
-    else
       server
     end
 
-  if rep_term == updated.curr_term and updated.role == :CANDIDATE do
-    updated =
-      if rep_voted_for == updated.selfP do
-        updated
+  send(req_id, { :VOTE_REPLY, %{from: server.selfP, term: server.curr_term, voted_for: server.voted_for} })
+
+  server
+end
+
+def handle_vote_reply(server, %{from: rep_from, term: rep_term, voted_for: rep_voted_for}) do
+  server = server |> ServerLib.stepdown(rep_term)
+
+  if rep_term == server.curr_term and server.role == :CANDIDATE do
+    server =
+      if rep_voted_for == server.selfP do
+        server
         |> State.add_to_voted_by(rep_from)
         |> Debug.info("Someone voted for #{server.server_num}")
       else
-        updated
+        server
       end
-    updated = updated |> Timer.cancel_append_entries_timer(rep_from)
-    if State.vote_tally(updated) >= updated.majority do
-      IO.puts "#{updated.server_num} elected at term #{updated.curr_term}"
-      updated =
-        updated
-        |> State.role(:LEADER)
-        |> State.leaderP(updated.selfP)
-        |> State.init_next_index()
-        |> State.init_match_index()
-        |> Debug.info("#{updated.server_num} elected")
-      Enum.reduce(Enum.filter(updated.servers, fn followerP -> followerP != updated.selfP end), updated, fn followerP, acc -> acc |> AppendEntries.send_append_entries(followerP) end)
+    server = server |> Timer.cancel_append_entries_timer(rep_from)
+    if State.vote_tally(server) >= server.majority do
+      IO.puts "#{server.server_num} elected at term #{server.curr_term}"
+      server = server |> ServerLib.become_leader()
+      Enum.reduce(Enum.filter(server.servers, fn followerP -> followerP != server.selfP end), server, fn followerP, acc -> acc |> AppendEntries.send_append_entries(followerP) end)
     else
-      updated
+      server
     end
   else
-    updated
+    server
   end
-end
-
-def stepdown(server, term) do
-  server
-  |> Debug.info("stepping down from #{term}")
-  |> State.curr_term(term)
-  |> State.role(:FOLLOWER)
-  |> State.voted_for(nil)
-  |> State.leaderP(nil)
-  |> Timer.restart_election_timer()
-  |> Debug.info("stepped down, curr_term is ##{server.curr_term}")
 end
 
 end # Vote
