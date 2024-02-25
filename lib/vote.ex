@@ -87,6 +87,8 @@ def handle_vote_reply(server, %{from: rep_from, term: rep_term, voted_for: rep_v
         updated
         |> State.role(:LEADER)
         |> State.leaderP(updated.selfP)
+        |> State.init_next_index()
+        |> State.init_match_index()
         |> Debug.info("#{updated.server_num} elected")
       Enum.reduce(Enum.filter(updated.servers, fn followerP -> followerP != updated.selfP end), updated, fn followerP, acc -> acc |> AppendEntries.send_append_entries(followerP) end)
     else
