@@ -48,20 +48,19 @@ def params :default do
 
     client_timelimit:        60_000,   # clients stops sending requests after this time(ms)
     max_client_requests:     5000,     # maximum no of requests each client will attempt
-    client_request_interval: 1,        # interval(ms) between client requests
-    client_reply_timeout:    10000,       # timeout(ms) for the reply to a client request
+    client_request_interval: 10,        # interval(ms) between client requests
+    client_reply_timeout:    1000,       # timeout(ms) for the reply to a client request
 
-    election_timeout_range:  1000..2000, # timeout(ms) for election, set randomly in range
+    election_timeout_range:  100..200, # timeout(ms) for election, set randomly in range
     append_entries_timeout:  10,       # timeout(ms) for the reply to a append_entries request
 
-    monitor_interval:        1000,     # interval(ms) between monitor summaries
+    monitor_interval:        100,     # interval(ms) between monitor summaries
 
     crash_servers: %{		       # server_num => crash_after_time (ms), ..
-      # 3 => 5_000,
       # 4 => 8_000,
     },
 
-    crash_leaders_after:      3000,    # nil or time after which leaders will crash
+    crash_leaders_after:      300,    # nil or time after which leaders will crash
 
   }
 end # params :default

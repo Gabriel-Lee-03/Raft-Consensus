@@ -25,7 +25,11 @@ def cancel_election_timer(server) do
   server |> State.election_timer(nil)
 end # cancel_election_timer
 
-
+def send_sleep_timer(server) do
+  timeout_msg = { :SLEEP }
+  Process.send_after(server.selfP, timeout_msg, server.config.crash_leaders_after)
+  server
+end
 
 # _________________________________________________________ restart_append_entries_timer()
 def restart_append_entries_timer(server, followerP) do
