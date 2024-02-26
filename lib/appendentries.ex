@@ -57,7 +57,7 @@ def handle_append_entries_reply(server, %{from: followerP, term: term, success: 
       server
       |> State.next_index(followerP, server.next_index[followerP] - 1)
     end
-  server = server |> AppendEntries.update_leader_commit_index(server.commit_index + 1)
+  server = server |> AppendEntries.update_leader_commit_index(index)
   if server.next_index[followerP] <= Log.last_index(server) do
     server |> AppendEntries.send_append_entries(followerP)
   else
@@ -68,16 +68,19 @@ end
 def handle_append_entries_reply(server, %{from: _, term: _, success: _, index: _}) do server end
 
 def update_leader_commit_index(server, index) do
-  count = Enum.count(server.match_index, fn {_key, value} -> value >= index end)
-  if count >= server.majority do
-    server
-    |> State.commit_index(index)
-    |> Debug.info("Leader #{server.server_num} has updated commit index to #{index}", 2)
-    |> AppendEntries.update_leader_commit_index(index + 1)
-    |> ServerLib.send_all_database_request()
+  if Log.term_at(server, index) == server.curr_term do
+    count = Enum.count(server.match_index, fn {_key, value} -> value >= index end)
+    if count >= server.majority do
+      server
+      |> State.commit_index(index)
+      |> Debug.info("Leader #{server.server_num} has updated commit index to #{index}", 2)
+      |> ServerLib.send_all_database_request()
+    else
+      server
+      |> Debug.info("Leader #{server.server_num} did not update commit index.", 3)
+    end
   else
     server
-    |> Debug.info("Leader #{server.server_num} has already updated commit index.", 3)
   end
 end
 

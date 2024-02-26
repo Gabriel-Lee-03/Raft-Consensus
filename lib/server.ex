@@ -52,7 +52,7 @@ defmodule Server do
       server |> ServerLib.handle_db_reply(msg)
 
     { :SLEEP } ->
-      Process.sleep(600)
+      Process.sleep(1500)
       server
 
      unexpected ->
