@@ -1,0 +1,105 @@
+mix compile
+-------------------------------------------------------------------
+
+16:43:28.131 [error] Process #PID<20066.114.0> on node :"client2_21_cannanwong@127.0.0.1" raised an exception
+** (UndefinedFunctionError) function Client.start/3 is undefined (module Client is not available)
+    (raft 0.1.0) Client.start(%{node_type: "Raft", debug_options: "!inf", node_name: "Raft", start_function: :cluster_start, monitorP: #PID<0.131.0>, n_servers: 10, n_clients: 5, node_suffix: "21_cannanwong@127.0.0.1", line_num: 0, node_location: "flooding_21_cannanwong@127.0.0.1 (146.169.128.43)", node_num: "", debug_level: 1, params_function: :default, raft_timelimit: 10000, append_entries_timeout: 10, client_reply_timeout: 1000, client_request_interval: 1, client_timelimit: 8000, crash_leaders_after: 100000, crash_servers: %{}, election_timeout_range: 100..200, max_amount: 1000, max_client_requests: 5000, monitor_interval: 500, n_accounts: 100}, 2, [#PID<19955.134.0>, #PID<20056.134.0>, #PID<20057.134.0>, #PID<20058.134.0>, #PID<20059.134.0>, #PID<20060.134.0>, #PID<20061.134.0>, #PID<20062.134.0>, #PID<20063.134.0>, #PID<20064.134.0>])
+  time = 500 client requests seen = [{4, 4}]
+  time = 500      db updates done = [{1, 1}, {2, 1}, {3, 1}, {4, 2}, {5, 1}, {6, 1}, {7, 1}, {8, 1}, {9, 1}, {10, 1}]
+
+  time = 1000 client requests seen = [{4, 178}]
+  time = 1000      db updates done = [{1, 170}, {2, 170}, {3, 174}, {4, 174}, {5, 174}, {6, 174}, {7, 170}, {8, 170}, {9, 174}, {10, 170}]
+
+  time = 1500 client requests seen = [{4, 362}]
+  time = 1500      db updates done = [{1, 354}, {2, 354}, {3, 354}, {4, 358}, {5, 354}, {6, 354}, {7, 354}, {8, 354}, {9, 354}, {10, 354}]
+
+  time = 2000 client requests seen = [{4, 542}]
+  time = 2000      db updates done = [{1, 542}, {2, 538}, {3, 538}, {4, 542}, {5, 538}, {6, 538}, {7, 538}, {8, 538}, {9, 538}, {10, 538}]
+
+  time = 2500 client requests seen = [{4, 726}]
+  time = 2500      db updates done = [{1, 722}, {2, 722}, {3, 722}, {4, 722}, {5, 722}, {6, 722}, {7, 722}, {8, 718}, {9, 718}, {10, 718}]
+
+  time = 3000 client requests seen = [{4, 906}]
+  time = 3000      db updates done = [{1, 902}, {2, 902}, {3, 902}, {4, 906}, {5, 902}, {6, 902}, {7, 902}, {8, 902}, {9, 902}, {10, 902}]
+
+  time = 3500 client requests seen = [{4, 1090}]
+  time = 3500      db updates done = [{1, 1082}, {2, 1082}, {3, 1082}, {4, 1086}, {5, 1082}, {6, 1082}, {7, 1082}, {8, 1082}, {9, 1082}, {10, 1082}]
+
+  time = 4000 client requests seen = [{4, 1274}]
+  time = 4000      db updates done = [{1, 1266}, {2, 1266}, {3, 1266}, {4, 1270}, {5, 1266}, {6, 1266}, {7, 1266}, {8, 1266}, {9, 1266}, {10, 1266}]
+
+  time = 4500 client requests seen = [{4, 1454}]
+  time = 4500      db updates done = [{1, 1446}, {2, 1450}, {3, 1446}, {4, 1450}, {5, 1450}, {6, 1450}, {7, 1450}, {8, 1450}, {9, 1450}, {10, 1450}]
+
+  time = 5000 client requests seen = [{4, 1638}]
+  time = 5000      db updates done = [{1, 1630}, {2, 1630}, {3, 1630}, {4, 1634}, {5, 1634}, {6, 1634}, {7, 1634}, {8, 1634}, {9, 1634}, {10, 1630}]
+
+  time = 5500 client requests seen = [{4, 1826}]
+  time = 5500      db updates done = [{1, 1822}, {2, 1818}, {3, 1822}, {4, 1822}, {5, 1818}, {6, 1818}, {7, 1818}, {8, 1818}, {9, 1818}, {10, 1822}]
+
+  time = 6000 client requests seen = [{4, 2014}]
+  time = 6000      db updates done = [{1, 2006}, {2, 2010}, {3, 2006}, {4, 2010}, {5, 2010}, {6, 2006}, {7, 2006}, {8, 2006}, {9, 2006}, {10, 2006}]
+
+  time = 6500 client requests seen = [{4, 2198}]
+  time = 6500      db updates done = [{1, 2194}, {2, 2194}, {3, 2194}, {4, 2198}, {5, 2194}, {6, 2194}, {7, 2194}, {8, 2194}, {9, 2194}, {10, 2194}]
+
+  time = 7000 client requests seen = [{4, 2382}]
+  time = 7000      db updates done = [{1, 2374}, {2, 2374}, {3, 2374}, {4, 2378}, {5, 2374}, {6, 2374}, {7, 2378}, {8, 2378}, {9, 2378}, {10, 2374}]
+
+  time = 7500 client requests seen = [{4, 2558}]
+  time = 7500      db updates done = [{1, 2554}, {2, 2554}, {3, 2554}, {4, 2558}, {5, 2554}, {6, 2554}, {7, 2554}, {8, 2554}, {9, 2554}, {10, 2554}]
+
+  time = 8000 client requests seen = [{4, 2742}]
+  time = 8000      db updates done = [{1, 2738}, {2, 2734}, {3, 2738}, {4, 2738}, {5, 2734}, {6, 2738}, {7, 2734}, {8, 2738}, {9, 2734}, {10, 2738}]
+
+  Node client1_21_cannanwong@127.0.0.1 exiting - ***************** Client: unexpected message :CLIENT_TIMELIMIT
+
+16:43:36.132 [error] Process #PID<20065.134.0> on node :"client1_21_cannanwong@127.0.0.1" raised an exception
+** (UndefinedFunctionError) function :ok.seqnum/0 is undefined (module :ok is not available)
+    :ok.seqnum()
+    (raft 0.1.0) lib/client.ex:40: Client.next/1
+  Node client3_21_cannanwong@127.0.0.1 exiting - ***************** Client: unexpected message :CLIENT_TIMELIMIT
+
+16:43:36.152 [error] Process #PID<20067.134.0> on node :"client3_21_cannanwong@127.0.0.1" raised an exception
+** (UndefinedFunctionError) function :ok.seqnum/0 is undefined (module :ok is not available)
+    :ok.seqnum()
+    (raft 0.1.0) lib/client.ex:40: Client.next/1
+  Node client4_21_cannanwong@127.0.0.1 exiting - ***************** Client: unexpected message :CLIENT_TIMELIMIT
+
+16:43:36.162 [error] Process #PID<20104.134.0> on node :"client4_21_cannanwong@127.0.0.1" raised an exception
+** (UndefinedFunctionError) function :ok.seqnum/0 is undefined (module :ok is not available)
+    :ok.seqnum()
+    (raft 0.1.0) lib/client.ex:40: Client.next/1
+  Node client5_21_cannanwong@127.0.0.1 exiting - ***************** Client: unexpected message :CLIENT_TIMELIMIT
+
+16:43:36.171 [error] Process #PID<20153.134.0> on node :"client5_21_cannanwong@127.0.0.1" raised an exception
+** (UndefinedFunctionError) function :ok.seqnum/0 is undefined (module :ok is not available)
+    :ok.seqnum()
+    (raft 0.1.0) lib/client.ex:40: Client.next/1
+  time = 8500 client requests seen = [{4, 2779}]
+  time = 8500      db updates done = [{1, 2779}, {2, 2779}, {3, 2779}, {4, 2779}, {5, 2779}, {6, 2779}, {7, 2779}, {8, 2779}, {9, 2779}, {10, 2779}]
+
+  time = 9000 client requests seen = [{4, 2779}]
+  time = 9000      db updates done = [{1, 2779}, {2, 2779}, {3, 2779}, {4, 2779}, {5, 2779}, {6, 2779}, {7, 2779}, {8, 2779}, {9, 2779}, {10, 2779}]
+
+  Node server3_21_cannanwong@127.0.0.1 exiting - maxtime reached
+  Node server7_21_cannanwong@127.0.0.1 exiting - maxtime reached
+  Node server9_21_cannanwong@127.0.0.1 exiting - maxtime reached
+  Node server10_21_cannanwong@127.0.0.1 exiting - maxtime reached
+  Node server5_21_cannanwong@127.0.0.1 exiting - maxtime reached
+  Node server1_21_cannanwong@127.0.0.1 exiting - maxtime reached
+  time = 9500 client requests seen = [{4, 2779}]
+  time = 9500      db updates done = [{1, 2779}, {2, 2779}, {3, 2779}, {4, 2779}, {5, 2779}, {6, 2779}, {7, 2779}, {8, 2779}, {9, 2779}, {10, 2779}]
+
+  Node server8_21_cannanwong@127.0.0.1 exiting - maxtime reached
+  Node server4_21_cannanwong@127.0.0.1 exiting - maxtime reached
+  Node server2_21_cannanwong@127.0.0.1 exiting - maxtime reached
+  Node server6_21_cannanwong@127.0.0.1 exiting - maxtime reached
+  Node flooding_21_cannanwong@127.0.0.1 exiting - maxtime reached
+  time = 10000 client requests seen = [{4, 2779}]
+  time = 10000      db updates done = [{1, 2779}, {2, 2779}, {3, 2779}, {4, 2779}, {5, 2779}, {6, 2779}, {7, 2779}, {8, 2779}, {9, 2779}, {10, 2779}]
+
+  time = 10500 client requests seen = [{4, 2779}]
+  time = 10500      db updates done = [{1, 2779}, {2, 2779}, {3, 2779}, {4, 2779}, {5, 2779}, {6, 2779}, {7, 2779}, {8, 2779}, {9, 2779}, {10, 2779}]
+
+  Node client2_21_cannanwong@127.0.0.1 exiting - maxtime reached

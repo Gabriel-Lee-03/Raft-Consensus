@@ -1,0 +1,81 @@
+mix compile
+-------------------------------------------------------------------
+  time = 500 client requests seen = [{3, 16}]
+  time = 500      db updates done = [{1, 13}, {2, 13}, {3, 16}, {4, 16}, {5, 13}, {6, 13}, {7, 13}, {8, 16}, {9, 16}, {10, 13}]
+
+  time = 1000 client requests seen = [{3, 175}]
+  time = 1000      db updates done = [{1, 165}, {2, 165}, {3, 170}, {4, 165}, {5, 165}, {6, 170}, {7, 165}, {8, 165}, {9, 165}, {10, 170}]
+
+  time = 1500 client requests seen = [{3, 175}]
+  time = 1500      db updates done = [{1, 165}, {2, 165}, {3, 170}, {4, 165}, {5, 165}, {6, 170}, {7, 165}, {8, 165}, {9, 165}, {10, 170}]
+
+  time = 2000 client requests seen = [{3, 175}, {4, 70}]
+  time = 2000      db updates done = [{1, 235}, {2, 235}, {3, 170}, {4, 240}, {5, 165}, {6, 235}, {7, 235}, {8, 235}, {9, 235}, {10, 235}]
+
+  time = 2500 client requests seen = [{3, 175}, {4, 100}]
+  time = 2500      db updates done = [{1, 265}, {2, 265}, {3, 265}, {4, 265}, {5, 165}, {6, 265}, {7, 265}, {8, 265}, {9, 265}, {10, 265}]
+
+  time = 3000 client requests seen = [{3, 175}, {4, 100}]
+  time = 3000      db updates done = [{1, 265}, {2, 265}, {3, 265}, {4, 265}, {5, 265}, {6, 265}, {7, 265}, {8, 265}, {9, 265}, {10, 265}]
+
+  time = 3500 client requests seen = [{3, 175}, {4, 100}, {10, 10}]
+  time = 3500      db updates done = [{1, 275}, {2, 265}, {3, 275}, {4, 265}, {5, 275}, {6, 275}, {7, 275}, {8, 275}, {9, 275}, {10, 275}]
+
+  time = 4000 client requests seen = [{3, 175}, {4, 100}, {10, 10}]
+  time = 4000      db updates done = [{1, 275}, {2, 265}, {3, 275}, {4, 275}, {5, 275}, {6, 275}, {7, 275}, {8, 275}, {9, 275}, {10, 275}]
+
+  time = 4500 client requests seen = [{3, 180}, {4, 100}, {10, 10}]
+  time = 4500      db updates done = [{1, 275}, {2, 275}, {3, 275}, {4, 275}, {5, 275}, {6, 275}, {7, 275}, {8, 275}, {9, 275}, {10, 275}]
+
+  time = 5000 client requests seen = [{3, 180}, {4, 100}, {10, 10}]
+  time = 5000      db updates done = [{1, 275}, {2, 275}, {3, 275}, {4, 275}, {5, 275}, {6, 275}, {7, 275}, {8, 275}, {9, 275}, {10, 275}]
+
+  time = 5500 client requests seen = [{3, 180}, {4, 100}, {10, 10}]
+  time = 5500      db updates done = [{1, 275}, {2, 275}, {3, 275}, {4, 275}, {5, 275}, {6, 275}, {7, 275}, {8, 275}, {9, 275}, {10, 275}]
+
+  time = 6000 client requests seen = [{3, 180}, {4, 100}, {10, 10}]
+  time = 6000      db updates done = [{1, 275}, {2, 275}, {3, 275}, {4, 275}, {5, 275}, {6, 275}, {7, 275}, {8, 275}, {9, 275}, {10, 275}]
+
+  time = 6500 client requests seen = [{3, 180}, {4, 100}, {10, 10}]
+  time = 6500      db updates done = [{1, 275}, {2, 275}, {3, 275}, {4, 275}, {5, 275}, {6, 275}, {7, 275}, {8, 275}, {9, 275}, {10, 275}]
+
+  time = 7000 client requests seen = [{3, 180}, {4, 100}, {10, 10}]
+  time = 7000      db updates done = [{1, 275}, {2, 275}, {3, 275}, {4, 275}, {5, 275}, {6, 275}, {7, 275}, {8, 275}, {9, 275}, {10, 275}]
+
+  time = 7500 client requests seen = [{3, 180}, {4, 100}, {10, 15}]
+  time = 7500      db updates done = [{1, 275}, {2, 275}, {3, 275}, {4, 275}, {5, 275}, {6, 275}, {7, 275}, {8, 275}, {9, 275}, {10, 275}]
+
+  time = 8000 client requests seen = [{3, 180}, {4, 100}, {10, 15}]
+  time = 8000      db updates done = [{1, 275}, {2, 275}, {3, 275}, {4, 275}, {5, 275}, {6, 275}, {7, 275}, {8, 275}, {9, 275}, {10, 275}]
+
+  time = 8500 client requests seen = [{3, 180}, {4, 100}, {10, 15}]
+  time = 8500      db updates done = [{1, 275}, {2, 275}, {3, 275}, {4, 275}, {5, 275}, {6, 275}, {7, 275}, {8, 275}, {9, 275}, {10, 275}]
+
+  time = 9000 client requests seen = [{3, 180}, {4, 100}, {10, 15}]
+  time = 9000      db updates done = [{1, 275}, {2, 275}, {3, 275}, {4, 275}, {5, 275}, {6, 275}, {7, 275}, {8, 275}, {9, 275}, {10, 275}]
+
+  Node server5_43_cannanwong@127.0.0.1 exiting - maxtime reached
+  Node client2_43_cannanwong@127.0.0.1 exiting - maxtime reached
+  Node server10_43_cannanwong@127.0.0.1 exiting - maxtime reached
+  Node client3_43_cannanwong@127.0.0.1 exiting - maxtime reached
+  Node server2_43_cannanwong@127.0.0.1 exiting - maxtime reached
+  Node server8_43_cannanwong@127.0.0.1 exiting - maxtime reached
+  Node client1_43_cannanwong@127.0.0.1 exiting - maxtime reached
+  Node client4_43_cannanwong@127.0.0.1 exiting - maxtime reached
+  Node server4_43_cannanwong@127.0.0.1 exiting - maxtime reached
+  Node client5_43_cannanwong@127.0.0.1 exiting - maxtime reached
+  Node server3_43_cannanwong@127.0.0.1 exiting - maxtime reached
+  Node server7_43_cannanwong@127.0.0.1 exiting - maxtime reached
+  Node server1_43_cannanwong@127.0.0.1 exiting - maxtime reached
+  Node server9_43_cannanwong@127.0.0.1 exiting - maxtime reached
+  time = 9500 client requests seen = [{3, 180}, {4, 100}, {7, 5}, {10, 15}]
+  time = 9500      db updates done = [{1, 275}, {2, 275}, {3, 275}, {4, 275}, {5, 275}, {6, 275}, {7, 275}, {8, 275}, {9, 275}, {10, 275}]
+
+  Node server6_43_cannanwong@127.0.0.1 exiting - maxtime reached
+  Node flooding_43_cannanwong@127.0.0.1 exiting - maxtime reached
+  time = 10000 client requests seen = [{3, 180}, {4, 100}, {7, 5}, {10, 15}]
+  time = 10000      db updates done = [{1, 275}, {2, 275}, {3, 275}, {4, 275}, {5, 275}, {6, 275}, {7, 275}, {8, 275}, {9, 275}, {10, 275}]
+
+  time = 10500 client requests seen = [{3, 180}, {4, 100}, {7, 5}, {10, 15}]
+  time = 10500      db updates done = [{1, 275}, {2, 275}, {3, 275}, {4, 275}, {5, 275}, {6, 275}, {7, 275}, {8, 275}, {9, 275}, {10, 275}]
+

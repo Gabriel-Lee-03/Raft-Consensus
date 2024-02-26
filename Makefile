@@ -3,13 +3,13 @@
 # coursework, raft 
 # Makefile, v1
 
-SERVERS   = 5      	# 3 or more
-CLIENTS   = 2      	# 1 or more
-TIMELIMIT = 5000	# milli-seconds(ms) to quit after
+SERVERS   = 10     	# 3 or more
+CLIENTS   = 5      # 1 or more
+TIMELIMIT = 20000	# milli-seconds(ms) to quit after
 PARAMS    = default	# e.g. default, slower, faster, etc
 
-DEBUG_OPTIONS = "+areq -areq +arep -arep +vreq -vreq +vrep -vrep !inf"
-DEBUG_LEVEL   = 2
+DEBUG_OPTIONS = "!inf"
+DEBUG_LEVEL   = 1
 
 # DEBUG_OPTIONS = "+areq -areq +arep -arep +vreq +vall -vreq +vrep -vrep +atim -atim +etim -etim +dreq -dreq +drep -drep -creq -crep"
 

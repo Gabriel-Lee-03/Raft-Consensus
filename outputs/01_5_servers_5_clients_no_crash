@@ -1,0 +1,86 @@
+mix compile
+-------------------------------------------------------------------
+  time = 500 client requests seen = [{5, 53}]
+  time = 500      db updates done = [{1, 48}, {2, 48}, {3, 48}, {4, 43}, {5, 48}]
+
+  time = 1000 client requests seen = [{5, 278}]
+  time = 1000      db updates done = [{1, 273}, {2, 273}, {3, 273}, {4, 273}, {5, 278}]
+
+  time = 1500 client requests seen = [{5, 503}]
+  time = 1500      db updates done = [{1, 498}, {2, 493}, {3, 498}, {4, 493}, {5, 498}]
+
+  time = 2000 client requests seen = [{5, 733}]
+  time = 2000      db updates done = [{1, 723}, {2, 728}, {3, 723}, {4, 723}, {5, 728}]
+
+  time = 2500 client requests seen = [{5, 958}]
+  time = 2500      db updates done = [{1, 953}, {2, 958}, {3, 953}, {4, 953}, {5, 958}]
+
+  time = 3000 client requests seen = [{5, 1188}]
+  time = 3000      db updates done = [{1, 1183}, {2, 1178}, {3, 1178}, {4, 1178}, {5, 1183}]
+
+  time = 3500 client requests seen = [{5, 1413}]
+  time = 3500      db updates done = [{1, 1403}, {2, 1408}, {3, 1408}, {4, 1408}, {5, 1412}]
+
+  time = 4000 client requests seen = [{5, 1642}]
+  time = 4000      db updates done = [{1, 1633}, {2, 1633}, {3, 1633}, {4, 1633}, {5, 1638}]
+
+  time = 4500 client requests seen = [{5, 1801}]
+  time = 4500      db updates done = [{1, 1796}, {2, 1796}, {3, 1796}, {4, 1796}, {5, 1801}]
+
+  time = 5000 client requests seen = [{5, 1986}]
+  time = 5000      db updates done = [{1, 1976}, {2, 1976}, {3, 1976}, {4, 1976}, {5, 1981}]
+
+  time = 5500 client requests seen = [{5, 2221}]
+  time = 5500      db updates done = [{1, 2211}, {2, 2211}, {3, 2211}, {4, 2211}, {5, 2216}]
+
+  time = 6000 client requests seen = [{5, 2446}]
+  time = 6000      db updates done = [{1, 2436}, {2, 2436}, {3, 2436}, {4, 2436}, {5, 2441}]
+
+  time = 6500 client requests seen = [{5, 2676}]
+  time = 6500      db updates done = [{1, 2666}, {2, 2666}, {3, 2666}, {4, 2666}, {5, 2671}]
+
+  time = 7000 client requests seen = [{5, 2901}]
+  time = 7000      db updates done = [{1, 2891}, {2, 2891}, {3, 2891}, {4, 2891}, {5, 2896}]
+
+  time = 7500 client requests seen = [{5, 3091}]
+  time = 7500      db updates done = [{1, 3086}, {2, 3086}, {3, 3086}, {4, 3086}, {5, 3091}]
+
+  Node client1_02_cannanwong@127.0.0.1 exiting - ***************** Client: unexpected message :CLIENT_TIMELIMIT
+  Node client2_02_cannanwong@127.0.0.1 exiting - ***************** Client: unexpected message :CLIENT_TIMELIMIT
+
+16:20:15.568 [error] Process #PID<20060.134.0> on node :"client1_02_cannanwong@127.0.0.1" raised an exception
+** (UndefinedFunctionError) function :ok.seqnum/0 is undefined (module :ok is not available)
+    :ok.seqnum()
+    (raft 0.1.0) lib/client.ex:40: Client.next/1
+  Node client3_02_cannanwong@127.0.0.1 exiting - ***************** Client: unexpected message :CLIENT_TIMELIMIT
+  Node client4_02_cannanwong@127.0.0.1 exiting - ***************** Client: unexpected message :CLIENT_TIMELIMIT
+  Node client5_02_cannanwong@127.0.0.1 exiting - ***************** Client: unexpected message :CLIENT_TIMELIMIT
+
+16:20:15.606 [error] Process #PID<20064.134.0> on node :"client5_02_cannanwong@127.0.0.1" raised an exception
+** (UndefinedFunctionError) function :ok.seqnum/0 is undefined (module :ok is not available)
+    :ok.seqnum()
+    (raft 0.1.0) lib/client.ex:40: Client.next/1
+  time = 8000 client requests seen = [{5, 3290}]
+  time = 8000      db updates done = [{1, 3290}, {2, 3290}, {3, 3290}, {4, 3290}, {5, 3290}]
+
+  time = 8500 client requests seen = [{5, 3290}]
+  time = 8500      db updates done = [{1, 3290}, {2, 3290}, {3, 3290}, {4, 3290}, {5, 3290}]
+
+  time = 9000 client requests seen = [{5, 3290}]
+  time = 9000      db updates done = [{1, 3290}, {2, 3290}, {3, 3290}, {4, 3290}, {5, 3290}]
+
+  Node server5_02_cannanwong@127.0.0.1 exiting - maxtime reached
+  Node server1_02_cannanwong@127.0.0.1 exiting - maxtime reached
+  Node server2_02_cannanwong@127.0.0.1 exiting - maxtime reached
+  Node server4_02_cannanwong@127.0.0.1 exiting - maxtime reached
+  time = 9500 client requests seen = [{5, 3290}]
+  time = 9500      db updates done = [{1, 3290}, {2, 3290}, {3, 3290}, {4, 3290}, {5, 3290}]
+
+  Node server3_02_cannanwong@127.0.0.1 exiting - maxtime reached
+  Node flooding_02_cannanwong@127.0.0.1 exiting - maxtime reached
+  time = 10000 client requests seen = [{5, 3290}]
+  time = 10000      db updates done = [{1, 3290}, {2, 3290}, {3, 3290}, {4, 3290}, {5, 3290}]
+
+  time = 10500 client requests seen = [{5, 3290}]
+  time = 10500      db updates done = [{1, 3290}, {2, 3290}, {3, 3290}, {4, 3290}, {5, 3290}]
+
