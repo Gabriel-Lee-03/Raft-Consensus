@@ -1,5 +1,6 @@
 # distributed algorithms, n.dulay, 14 jan 2024
 # coursework, raft consensus, v2
+# Gabriel Lee (gl721) and Hou Wang Wong (hww21)
 
 defmodule Server do
 

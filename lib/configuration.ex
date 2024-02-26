@@ -1,6 +1,7 @@
 
 # distributed algorithms, n.dulay, 14 jan 2024
 # raft, configuration parameters v2
+# Gabriel Lee (gl721) and Hou Wang Wong (hww21)
 
 defmodule Configuration do
 

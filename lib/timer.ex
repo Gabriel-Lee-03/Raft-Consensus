@@ -1,6 +1,8 @@
 
 # distributed algorithms, n.dulay, 14 jan 2024
 # coursework, raft consensus, v2
+# Gabriel Lee (gl721) and Hou Wang Wong (hww21)
+# Edit: Added a sleep timer to simulate temporary disconnections for certain servers eg. leader crashes
 
 defmodule Timer do
 
@@ -25,11 +27,12 @@ def cancel_election_timer(server) do
   server |> State.election_timer(nil)
 end # cancel_election_timer
 
+# _________________________________________________________ send_sleep_timer()
 def send_sleep_timer(server) do
   timeout_msg = { :SLEEP }
   Process.send_after(server.selfP, timeout_msg, server.config.crash_leaders_after)
   server
-end
+end # send_sleep_timer()
 
 # _________________________________________________________ restart_append_entries_timer()
 def restart_append_entries_timer(server, followerP) do
